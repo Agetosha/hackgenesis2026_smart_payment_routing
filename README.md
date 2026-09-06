@@ -19,29 +19,24 @@ The system automatically selects the most suitable payment provider for each tra
 ### Prerequisites
 - **Ruby** 2.7 or higher
 
-### 1. Run the Router
-To process the operations queue and generate decision/analytics files in the root directory:
-
+### 1. Run & Validate for 90-item Queue (Default)
 ```bash
+# Generate decisions for 90 items
 ruby solution_code/main.rb
-```
 
-This automatically updates four output files in the root folder:
-
-* `routing_decisions_test.json` & `routing_decisions.json`
-* `routing_report_test.json` & `routing_report.json`
-
-### 2. Validate Results
-
-To run the auto-checks on the generated routing decisions:
-
-```bash
-# For the full 90-item test queue:
+# Validate 90 items
 ruby scripts/validate_90.rb routing_decisions_test.json
-
-# For the 10-item sample queue:
+```
+### 2. Run & Validate for 10-item Queue
+```Bash
+# Temporarily move 90-item queue to process 10-item queue
+mv data/operations_queue_90.json ./
+ruby solution_code/main.rb
 ruby scripts/validate_10.rb routing_decisions_test.json
 
+# Restore 90-item queue
+mv operations_queue_90.json data/
+ruby solution_code/main.rb
 ```
 
 ---
