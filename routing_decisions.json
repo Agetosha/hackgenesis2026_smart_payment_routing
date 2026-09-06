@@ -10,7 +10,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 34
+    "latency_sec": 27
   },
   {
     "operation_id": "op_102",
@@ -29,7 +29,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 32
+    "latency_sec": 12
   },
   {
     "operation_id": "op_103",
@@ -54,7 +54,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 16
+    "latency_sec": 25
   },
   {
     "operation_id": "op_104",
@@ -79,7 +79,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 23
+    "latency_sec": 20
   },
   {
     "operation_id": "op_105",
@@ -92,7 +92,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 12
+    "latency_sec": 21
   },
   {
     "operation_id": "op_106",
@@ -105,7 +105,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 16
+    "latency_sec": 34
   },
   {
     "operation_id": "op_107",
@@ -124,7 +124,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 25
+    "latency_sec": 30
   },
   {
     "operation_id": "op_108",
@@ -149,7 +149,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 16
+    "latency_sec": 15
   },
   {
     "operation_id": "op_109",
@@ -162,7 +162,7 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 27
+    "latency_sec": 21
   },
   {
     "operation_id": "op_110",
@@ -181,6 +181,6 @@
       }
     ],
     "simulated_result": "approved",
-    "latency_sec": 16
+    "latency_sec": 32
   }
 ]
