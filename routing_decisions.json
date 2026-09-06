@@ -1,0 +1,186 @@
+[
+  {
+    "operation_id": "op_101",
+    "selected_provider": "vipay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "selected",
+        "reason": "primary_priority_match"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 34
+  },
+  {
+    "operation_id": "op_102",
+    "selected_provider": "payflow",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank alfa not in [\"sberbank\", \"tinkoff\", \"vtb\"]"
+      },
+      {
+        "provider": "payflow",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 16
+  },
+  {
+    "operation_id": "op_103",
+    "selected_provider": "quickpay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "amount_exceeds_limit",
+        "details": "150000.0 > 100000"
+      },
+      {
+        "provider": "payflow",
+        "decision": "skipped",
+        "reason": "amount_exceeds_limit",
+        "details": "150000.0 > 50000"
+      },
+      {
+        "provider": "quickpay",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 27
+  },
+  {
+    "operation_id": "op_104",
+    "selected_provider": "quickpay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank gazprombank not in [\"sberbank\", \"tinkoff\", \"vtb\"]"
+      },
+      {
+        "provider": "payflow",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank gazprombank not in [\"sberbank\", \"alfa\"]"
+      },
+      {
+        "provider": "quickpay",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 22
+  },
+  {
+    "operation_id": "op_105",
+    "selected_provider": "vipay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "selected",
+        "reason": "primary_priority_match"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 21
+  },
+  {
+    "operation_id": "op_106",
+    "selected_provider": "vipay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "selected",
+        "reason": "primary_priority_match"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 15
+  },
+  {
+    "operation_id": "op_107",
+    "selected_provider": "payflow",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "amount_below_limit",
+        "details": "800.0 < 1000"
+      },
+      {
+        "provider": "payflow",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 31
+  },
+  {
+    "operation_id": "op_108",
+    "selected_provider": "quickpay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank raiffeisen not in [\"sberbank\", \"tinkoff\", \"vtb\"]"
+      },
+      {
+        "provider": "payflow",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank raiffeisen not in [\"sberbank\", \"alfa\"]"
+      },
+      {
+        "provider": "quickpay",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 21
+  },
+  {
+    "operation_id": "op_109",
+    "selected_provider": "vipay",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "selected",
+        "reason": "primary_priority_match"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 21
+  },
+  {
+    "operation_id": "op_110",
+    "selected_provider": "payflow",
+    "attempts": [
+      {
+        "provider": "vipay",
+        "decision": "skipped",
+        "reason": "bank_not_in_list",
+        "details": "bank alfa not in [\"sberbank\", \"tinkoff\", \"vtb\"]"
+      },
+      {
+        "provider": "payflow",
+        "decision": "selected",
+        "reason": "fallback_eligible_provider"
+      }
+    ],
+    "simulated_result": "approved",
+    "latency_sec": 14
+  }
+]

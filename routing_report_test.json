@@ -1,0 +1,47 @@
+{
+  "period": "2026-09-06",
+  "total_operations": 10,
+  "distribution": {
+    "vipay": {
+      "count": 4,
+      "share_pct": 40.0,
+      "target_pct": 40
+    },
+    "payflow": {
+      "count": 3,
+      "share_pct": 30.0,
+      "target_pct": 35
+    },
+    "quickpay": {
+      "count": 3,
+      "share_pct": 30.0,
+      "target_pct": 25
+    }
+  },
+  "skip_reasons": {
+    "bank_not_in_list": 6,
+    "amount_exceeds_limit": 2,
+    "amount_below_limit": 1
+  },
+  "projected_daily_utilization": {
+    "vipay": {
+      "used": 3302000.0,
+      "limit": 5000000.0,
+      "utilization_pct": 66.0
+    },
+    "payflow": {
+      "used": 2988800.0,
+      "limit": 3000000.0,
+      "utilization_pct": 99.6
+    },
+    "quickpay": {
+      "used": 1295000.0,
+      "limit": 8000000.0,
+      "utilization_pct": 16.2
+    }
+  },
+  "recommendations": [
+    "Провайдер payflow почти исчерпал дневной лимит (99.6%). Рекомендуется снизить traffic_percentage.",
+    "Высокий процент отказов из-за неподдерживаемых банков. Стоит расширить пул провайдеров для популярных банков."
+  ]
+}
