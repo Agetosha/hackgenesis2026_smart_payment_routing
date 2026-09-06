@@ -1,3 +1,12 @@
+<div align="center">
+
+![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)
+![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=for-the-badge)
+
+</div>
+
 # 💳 Smart Payment Routing Engine
 
 A modular smart payment routing and payout distribution system built with **Ruby**.
@@ -7,8 +16,6 @@ The system automatically selects the most suitable payment provider for each tra
 ---
 
 ## 🏗 Project Architecture
-
-The codebase follows the Single Responsibility Principle (**SRP**) and clean code practices:
 
 ```text
 .
@@ -23,11 +30,12 @@ The codebase follows the Single Responsibility Principle (**SRP**) and clean cod
 │   ├── operations_queue.json    # Sample transaction queue
 │   ├── operations_queue_test.json # Test transaction queue
 │   └── operations_history.csv   # Historical transaction logs
-├── routing_decisions_test.json  # Decision output (for auto-checks)
-├── routing_report_test.json     # Analytics and recommendations output
+├── routing_decisions.json       # Decision output (standard)
+├── routing_decisions_test.json  # Decision output (test auto-check)
+├── routing_report.json          # Analytics output (standard)
+├── routing_report_test.json     # Analytics output (test auto-check)
 ├── validate.rb                  # Output validation script
 └── README.md                    # Documentation
-
 ```
 
 ---
