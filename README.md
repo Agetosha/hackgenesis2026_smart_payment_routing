@@ -27,16 +27,18 @@ The system automatically selects the most suitable payment provider for each tra
 │   └── data_loader.rb           # I/O and JSON utility module
 ├── data/
 │   ├── providers.json           # Provider configs, limits, and metrics
-│   ├── operations_queue.json    # Sample transaction queue
-│   ├── operations_queue_test.json # Test transaction queue
-│   └── operations_history.csv   # Historical transaction logs
+│   ├── operations_queue_10.json # Sample transaction queue (10 items)
+│   ├── operations_history.csv   # Historical transaction logs
+│   ├── reference_decisions.json # Reference decisions for validation
+│   └── sample_routing_decisions.json # Sample of expected routing output
+├── scripts/
+│   └── validate_10.rb           # Validation script for 10 items
 ├── routing_decisions.json       # Decision output (standard)
 ├── routing_decisions_test.json  # Decision output (test auto-check)
 ├── routing_report.json          # Analytics output (standard)
 ├── routing_report_test.json     # Analytics output (test auto-check)
-├── validate.rb                  # Output validation script
-├── Task_description.docx        # Task description
-└── README.md                    # Documentation
+├── README.md                    # Documentation
+└── Task_description.docx        # Task description
 ```
 
 ---
