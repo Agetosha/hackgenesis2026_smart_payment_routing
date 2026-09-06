@@ -1,4 +1,3 @@
-```markdown
 # 💳 Smart Payment Routing Engine
 
 A modular smart payment routing and payout distribution system built with **Ruby**.
