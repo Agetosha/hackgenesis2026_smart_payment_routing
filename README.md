@@ -14,6 +14,38 @@ The system automatically selects the most suitable payment provider for each tra
 
 ---
 
+## ⚡ Quick Start (How to Run)
+
+### Prerequisites
+- **Ruby** 2.7 or higher
+
+### 1. Run the Router
+To process the operations queue and generate decision/analytics files in the root directory:
+
+```bash
+ruby solution_code/main.rb
+```
+
+This automatically updates four output files in the root folder:
+
+* `routing_decisions_test.json` & `routing_decisions.json`
+* `routing_report_test.json` & `routing_report.json`
+
+### 2. Validate Results
+
+To run the auto-checks on the generated routing decisions:
+
+```bash
+# For the full 90-item test queue:
+ruby scripts/validate_90.rb routing_decisions_test.json
+
+# For the 10-item sample queue:
+ruby scripts/validate_10.rb routing_decisions_test.json
+
+```
+
+---
+
 ## 🏗 Project Architecture
 
 ```text
@@ -26,18 +58,20 @@ The system automatically selects the most suitable payment provider for each tra
 │   └── data_loader.rb           # I/O and JSON utility module
 ├── data/
 │   ├── providers.json           # Provider configs, limits, and metrics
+│   ├── operations_queue_90.json # Test transaction queue (90 items)
 │   ├── operations_queue_10.json # Sample transaction queue (10 items)
 │   ├── operations_history.csv   # Historical transaction logs
 │   ├── reference_decisions.json # Reference decisions for validation
 │   └── sample_routing_decisions.json # Sample of expected routing output
 ├── scripts/
+│   ├── validate_90.rb           # Validation script for 90 items
 │   └── validate_10.rb           # Validation script for 10 items
 ├── routing_decisions.json       # Decision output (standard)
 ├── routing_decisions_test.json  # Decision output (test auto-check)
 ├── routing_report.json          # Analytics output (standard)
 ├── routing_report_test.json     # Analytics output (test auto-check)
-├── README.md                    # Documentation
-└── Task_description.docx        # Task description
+└── README.md                    # Documentation
+
 ```
 
 ---
@@ -49,10 +83,11 @@ The system automatically selects the most suitable payment provider for each tra
 Enforces strict pre-routing checks. A provider is skipped if any of the following checks fail:
 
 * **Status Check:** Must be `status == 'active'`.
-* **Requisites:** Must have `available_requisites > 0`.
+* **Zero Traffic Check:** Providers with `traffic_percentage == 0` are skipped (except fallback providers like `spacepayments`).
 * **Amount Limits:** Transaction amount must fall within `[limit_amount_min, limit_amount_max]`.
 * **Daily Volume:** `daily_approved_amount + amount` must not exceed `daily_amount_limit`.
-* **In-Progress Limits:** Current concurrent operations must not exceed `in_progress_count_limit`.
+* **In-Progress Limits:** Validates both concurrent count (`in_progress_count_limit`) and total pending amount (`in_progress_amount_limit`).
+* **Requisites:** Must have `available_requisites > 0`.
 * **Bank Restrictions:** Validates bank against `banks` (whitelist) or `exclude_banks` (blacklist).
 * **Margin Check:** Prevents negative merchant margin unless explicitly permitted (`allow_negative_agreement`).
 
@@ -63,7 +98,7 @@ The core cascading engine:
 * Sorts active providers by cascade priority (`priority`).
 * Sequentially applies `Constraints.check_hard_constraints`.
 * Logs all decision attempts (`attempts`) with detailed reasons (`selected` vs `skipped`).
-* Updates provider daily turnover and available requisites in real-time in-memory.
+* Tracks provider traffic distribution and skip statistics in real-time.
 
 ### 3. `Reporter` (`reporter.rb`)
 
@@ -78,43 +113,12 @@ Generates post-routing analytics and insights:
 Handles filesystem operations securely:
 
 * Smart directory path resolution for running from any context.
-* Priority loading for test transaction queues.
+* Priority loading for test transaction queues (`operations_queue_*.json`).
 * Standardized JSON formatting (`JSON.pretty_generate`).
 
 ### 5. `main.rb`
 
 Pipeline orchestrator that ties all modules together and exports the output artifacts to the root directory.
-
----
-
-## 🚀 Execution & Testing
-
-### Prerequisites
-
-* **Ruby** 2.7 or higher
-
-### 1. Running the Router
-
-To process the operation queue and generate decision/analytics files, run:
-
-```bash
-ruby solution_code/main.rb
-
-```
-
-This updates four output files in the root folder:
-
-* `routing_decisions_test.json` & `routing_decisions.json`
-* `routing_report_test.json` & `routing_report.json`
-
-### 2. Validating Results
-
-To run auto-checks on the generated routing decisions:
-
-```bash
-ruby validate.rb routing_decisions_test.json
-
-```
 
 ---
 
@@ -148,17 +152,17 @@ ruby validate.rb routing_decisions_test.json
 ```json
 {
   "period": "2026-09-06",
-  "total_operations": 10,
+  "total_operations": 90,
   "distribution": {
     "quickpay": {
-      "count": 6,
+      "count": 54,
       "share_pct": 60.0,
       "target_pct": 25
     }
   },
   "skip_reasons": {
-    "bank_not_in_list": 4,
-    "amount_exceeds_limit": 2
+    "bank_not_in_list": 24,
+    "amount_exceeds_limit": 12
   },
   "projected_daily_utilization": {
     "quickpay": {
