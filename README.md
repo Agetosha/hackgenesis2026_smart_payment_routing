@@ -35,6 +35,7 @@ The system automatically selects the most suitable payment provider for each tra
 ├── routing_report.json          # Analytics output (standard)
 ├── routing_report_test.json     # Analytics output (test auto-check)
 ├── validate.rb                  # Output validation script
+├── Task_description.docx        # Task description
 └── README.md                    # Documentation
 ```
 
