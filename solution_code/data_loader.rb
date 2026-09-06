@@ -1,3 +1,4 @@
+# Автоматически найдет самый свежий или самый крупный файл с очередью в папке data/
 require 'json'
 
 module DataLoader
@@ -7,16 +8,21 @@ module DataLoader
   end
 
   def self.load_queue(base_dir)
-    queue_file = [
-      File.join(base_dir, 'data', 'operations_queue_test.json'),
-      File.join(base_dir, 'data', 'operations_queue_10.json'),
-      File.join(base_dir, 'data', 'operations_queue.json')
-    ].find { |path| File.exist?(path) }
+    # Находим все файлы очереди в папке data/
+    candidates = Dir.glob(File.join(base_dir, 'data', 'operations_queue*'))
+    
+    # Исключаем служебные/лишние, если есть
+    candidates.reject! { |f| f.end_with?('.csv') }
 
-    unless queue_file
+    # Выбираем самый большой по размеру файл (в 90 заявках размер файла будет больше, чем в 10)
+    queue_file = candidates.max_by { |path| File.size(path) }
+
+    unless queue_file && File.exist?(queue_file)
       puts "Ошибка: не найден файл очереди в папке data/"
       exit 1
     end
+
+    puts "Загружен файл очереди: #{queue_file}"
     JSON.parse(File.read(queue_file))
   end
 

@@ -29,8 +29,6 @@ module Router
           selected_provider = p_name
           simulated_result = "approved"
 
-          p['daily_approved_amount'] = p['daily_approved_amount'].to_f + amount
-          p['available_requisites'] = p['available_requisites'].to_i - 1 if p['available_requisites']
           report_stats[:distribution][p_name] += 1
           total_processed += 1
           break

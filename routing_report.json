@@ -1,47 +1,52 @@
 {
   "period": "2026-09-07",
-  "total_operations": 10,
+  "total_operations": 90,
   "distribution": {
     "vipay": {
-      "count": 4,
-      "share_pct": 40.0,
+      "count": 31,
+      "share_pct": 34.4,
       "target_pct": 40
     },
     "payflow": {
-      "count": 3,
-      "share_pct": 30.0,
+      "count": 16,
+      "share_pct": 17.8,
       "target_pct": 35
     },
     "quickpay": {
-      "count": 3,
-      "share_pct": 30.0,
+      "count": 41,
+      "share_pct": 45.6,
       "target_pct": 25
+    },
+    "spacepayments": {
+      "count": 2,
+      "share_pct": 2.2,
+      "target_pct": 0
     }
   },
   "skip_reasons": {
-    "bank_not_in_list": 6,
-    "amount_exceeds_limit": 2,
-    "amount_below_limit": 1
+    "bank_not_in_list": 65,
+    "amount_exceeds_limit": 29,
+    "amount_below_limit": 10
   },
   "projected_daily_utilization": {
     "vipay": {
-      "used": 3302000.0,
+      "used": 3200000.0,
       "limit": 5000000.0,
-      "utilization_pct": 66.0
+      "utilization_pct": 64.0
     },
     "payflow": {
-      "used": 2988800.0,
+      "used": 2900000.0,
       "limit": 3000000.0,
-      "utilization_pct": 99.6
+      "utilization_pct": 96.7
     },
     "quickpay": {
-      "used": 1295000.0,
+      "used": 1100000.0,
       "limit": 8000000.0,
-      "utilization_pct": 16.2
+      "utilization_pct": 13.8
     }
   },
   "recommendations": [
-    "Провайдер payflow почти исчерпал дневной лимит (99.6%). Рекомендуется снизить traffic_percentage.",
+    "Провайдер payflow почти исчерпал дневной лимит (96.7%). Рекомендуется снизить traffic_percentage.",
     "Высокий процент отказов из-за неподдерживаемых банков. Стоит расширить пул провайдеров для популярных банков."
   ]
 }
